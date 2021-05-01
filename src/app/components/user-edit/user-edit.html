@@ -1,0 +1,43 @@
+<div class="col-lg-4" *ngIf="identity">
+
+    <div class="row">
+
+        <form #userUpdateForm="ngForm" (ngSubmit)="updateUserData()" class="col-md-10">
+            <h1>{{titulo}}</h1>
+            <hr>
+            <div *ngIf="alertMessage" class="alert alert-info" role="alert">
+                {{alertMessage}}
+            </div>
+            <div class="image_for_edit" *ngIf="user_to_update.image && user_to_update.image !=''">
+                <img src="{{url+'getImage/'+user_to_update.image}}" alt="" />
+            </div>
+            <p>
+                <label><strong>Sube tu foto: </strong></label>
+                <br>
+                <input class="inputImage" type="file" placeholder="Subir imagen..." (change)="fileChangeEvent($event)">
+            </p>
+            <p>
+                <label for="">Nombres:</label>
+                <input type="text" name="name" #name="ngModel" [(ngModel)]="user_to_update.name" class="form-control" required>
+                <span *ngIf="!name.valid && name.touched">
+                    El nombre es obligatorio.
+                </span>
+            </p>
+            <p>
+                <label for="">Apellidos:</label>
+                <input type="text" name="surName" #surName="ngModel" [(ngModel)]="user_to_update.surName" class="form-control" required>
+                <span *ngIf="!surName.valid && surName.touched">
+                    El apellido es obligatorio.
+                </span>
+            </p>
+            <p>
+                <label for="">Correo Electrónico:</label>
+                <input type="email" name="email" #email="ngModel" [(ngModel)]="user_to_update.email" class="form-control" required>
+                <span *ngIf="!email.valid && email.touched">
+                    El email es obligatorio.
+                </span>
+            </p>
+            <input type="submit" value="Actualizar" class="btn btn-primary">
+        </form>
+    </div>
+</div>
